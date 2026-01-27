@@ -1,24 +1,8 @@
-providers = ["php"]
-
 [phases.setup]
-nixPkgs = [
-  "php82",
-  "composer",
-  "php82Extensions.gd",
-  "php82Extensions.mbstring",
-  "php82Extensions.xml",
-  "php82Extensions.curl",
-  "nodejs_20"
-]
+nixPkgs = ["php82", "php82Extensions.gd", "php82Extensions.mbstring", "php82Extensions.xml", "php82Extensions.curl", "nodejs_20"]
 
 [phases.build]
-cmds = [
-  "composer install --no-dev --optimize-autoloader",
-  "npm ci",
-  "npm run build"
-]
+cmds = ["composer install --no-dev --optimize-autoloader", "npm install", "npm run build"]
 
-[phases.start]
-cmds = [
-  "php artisan migrate --force && php artisan storage:link && apache2-foreground"
-]
+[start]
+cmd = "php artisan migrate --force && php artisan storage:link && apache2-foreground"
