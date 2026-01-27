@@ -1,0 +1,61 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Berita;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
+class BeritaController extends Controller
+{
+    // Menampilkan daftar berita untuk admin (Manajemen Berita)
+    public function index()
+    {
+        $beritas = Berita::latest()->get();
+        return view('admin.berita.index', compact('beritas'));
+    }
+
+    // Menampilkan halaman publik
+    public function indexPublik()
+    {
+        $beritas = Berita::latest()->get();
+        return view('berita', compact('beritas'));
+    }
+
+    // Form tambah berita
+    public function create()
+    {
+        return view('admin.berita.tambah');
+    }
+
+    // PROSES SIMPAN (Cukup satu saja yang ini!)
+    public function store(Request $request)
+    {
+        $request->validate([
+            'judul' => 'required|string|max:255',
+            'isi'   => 'required',
+            'foto'  => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        $path = $request->file('foto')->store('berita', 'public');
+
+        Berita::create([
+            'judul' => $request->judul,
+            'isi'   => $request->isi,
+            'foto'  => $path,
+        ]);
+
+        // Langsung arahkan ke halaman manajemen berita
+        return redirect('/admin/berita')->with('success', 'Berita Berhasil Terbit! 🚀');
+    }
+
+    // Fungsi hapus berita
+    public function destroy($id)
+    {
+        $berita = Berita::findOrFail($id);
+        Storage::disk('public')->delete($berita->foto);
+        $berita->delete();
+
+        return redirect()->back()->with('success', 'Berita Berhasil Dihapus!');
+    }
+}
