@@ -1,16 +1,21 @@
 [phases.setup]
-nixPkgs = ['php82', 'php82Extensions.gd', 'php82Extensions.mbstring', 'php82Extensions.xml', 'php82Extensions.curl', 'nodejs']
+nixPkgs = [
+  "php82",
+  "php82Extensions.gd",
+  "php82Extensions.mbstring",
+  "php82Extensions.xml",
+  "php82Extensions.curl",
+  "nodejs"
+]
 
 [phases.build]
 cmds = [
-    'composer install --no-dev', 
-    'npm install', 
-    'npm run build'
+  "composer install --no-dev --optimize-autoloader",
+  "npm ci",
+  "npm run build"
 ]
 
 [phases.start]
 cmds = [
-    'php artisan migrate --force',
-    'php artisan storage:link',
-    'apache2-foreground'
+  "php artisan migrate --force && php artisan storage:link && apache2-foreground"
 ]
