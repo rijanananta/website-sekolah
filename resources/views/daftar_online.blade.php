@@ -6,9 +6,9 @@
     <title>Formulir Pendaftaran - SMAN 1 Rimba Melintang</title>
     @vite('resources/css/app.css')
 </head>
-<body class="bg-slate-100">
+<body class="bg-slate-100 font-sans">
     <div class="container mx-auto py-10 px-4">
-        <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
+        <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
             
             <div class="bg-blue-900 p-8 text-white text-center">
                 <div class="inline-block bg-yellow-500 text-blue-900 px-4 py-1 rounded-full text-xs font-bold mb-3 uppercase tracking-widest">
@@ -22,73 +22,125 @@
                 </p>
             </div>
 
-            <form action="/ppdb/simpan" method="POST" class="p-8 space-y-6">
+            <form action="/ppdb/simpan" method="POST" class="p-8 space-y-5">
                 @csrf 
-                <div class="grid grid-cols-1 gap-6">
+                
+                <div>
+                    <label class="text-gray-700 font-bold mb-2 flex items-center">
+                        <span class="mr-2">👤</span> Nama Lengkap Siswa
+                    </label>
+                    <input 
+                        type="text" 
+                        name="nama_lengkap" 
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-900 focus:ring-2 focus:ring-blue-900/20 outline-none transition"
+                        placeholder="Masukkan nama sesuai ijazah"
+                        required
+                    >
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-5">
                     <div>
                         <label class="text-gray-700 font-bold mb-2 flex items-center">
-                            <span class="mr-2">👤</span> Nama Lengkap Siswa
+                            <span class="mr-2">📍</span> Tempat Lahir
                         </label>
                         <input 
                             type="text" 
-                            name="nama_lengkap" 
+                            name="tempat_lahir" 
                             class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-900 focus:ring-2 focus:ring-blue-900/20 outline-none transition"
-                            placeholder="Masukkan nama sesuai ijazah"
+                            placeholder="Kota Kelahiran"
                             required
                         >
                     </div>
-
                     <div>
                         <label class="text-gray-700 font-bold mb-2 flex items-center">
-                            <span class="mr-2">🏫</span> Asal Sekolah (SMP/MTs)
+                            <span class="mr-2">📅</span> Tanggal Lahir
                         </label>
                         <input 
-                            type="text" 
-                            name="asal_sekolah" 
-                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-900 focus:ring-2 focus:ring-blue-900/20 outline-none transition"
-                            placeholder="Nama Sekolah asal"
+                            type="date" 
+                            name="tanggal_lahir" 
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-900 focus:ring-2 focus:ring-blue-900/20 outline-none transition text-gray-600"
                             required
                         >
                     </div>
+                </div>
 
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="text-gray-700 font-bold mb-2 flex items-center">
-                                <span class="mr-2">📞</span> Nomor HP/WhatsApp
-                            </label>
-                            <input 
-                                type="tel" 
-                                name="nomor_hp" 
-                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-900 focus:ring-2 focus:ring-blue-900/20 outline-none transition"
-                                placeholder="08xxxxxxxxxx"
-                                required
-                            >
-                        </div>
-
-                        <div>
-                            <label class="text-gray-700 font-bold mb-2 flex items-center">
-                                <span class="mr-2">📚</span> Pilihan Jurusan
-                            </label>
-                            <select 
-                                name="jurusan" 
-                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-900 focus:ring-2 focus:ring-blue-900/20 outline-none transition bg-white"
-                                required
-                            >
-                                <option value="">-- Pilih Jurusan --</option>
-                                <option value="IPA">MIPA (Ilmu Alam)</option>
-                                <option value="IPS">IPS (Ilmu Sosial)</option>
-                            </select>
-                        </div>
+                <div class="grid md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="text-gray-700 font-bold mb-2 flex items-center">
+                            <span class="mr-2">🚻</span> Jenis Kelamin
+                        </label>
+                        <select 
+                            name="jenis_kelamin" 
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-900 focus:ring-2 focus:ring-blue-900/20 outline-none transition bg-white"
+                            required
+                        >
+                            <option value="">-- Pilih --</option>
+                            <option value="Laki-laki">Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                        </select>
                     </div>
+                    <div>
+                        <label class="text-gray-700 font-bold mb-2 flex items-center">
+                            <span class="mr-2">📚</span> Pilihan Jurusan
+                        </label>
+                        <select 
+                            name="jurusan" 
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-900 focus:ring-2 focus:ring-blue-900/20 outline-none transition bg-white"
+                            required
+                        >
+                            <option value="">-- Pilih Jurusan --</option>
+                            <option value="IPA">MIPA (Ilmu Alam)</option>
+                            <option value="IPS">IPS (Ilmu Sosial)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="text-gray-700 font-bold mb-2 flex items-center">
+                        <span class="mr-2">🏫</span> Asal Sekolah (SMP/MTs)
+                    </label>
+                    <input 
+                        type="text" 
+                        name="asal_sekolah" 
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-900 focus:ring-2 focus:ring-blue-900/20 outline-none transition"
+                        placeholder="Nama sekolah asal"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label class="text-gray-700 font-bold mb-2 flex items-center">
+                        <span class="mr-2">📞</span> Nomor HP/WhatsApp Aktif
+                    </label>
+                    <input 
+                        type="tel" 
+                        name="nomor_hp" 
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-900 focus:ring-2 focus:ring-blue-900/20 outline-none transition"
+                        placeholder="08xxxxxxxxxx"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label class="text-gray-700 font-bold mb-2 flex items-center">
+                        <span class="mr-2">🏠</span> Alamat Lengkap
+                    </label>
+                    <textarea 
+                        name="alamat" 
+                        rows="3" 
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-900 focus:ring-2 focus:ring-blue-900/20 outline-none transition"
+                        placeholder="Dusun, RT/RW, Desa, Kecamatan"
+                        required
+                    ></textarea>
                 </div>
 
                 <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
                     <p class="text-sm text-yellow-800 italic">
-                        * Setelah klik daftar, silakan datang ke sekolah untuk menyerahkan berkas persyaratan.
+                        * Pastikan semua data sudah benar. Setelah klik daftar, silakan datang ke sekolah untuk menyerahkan berkas persyaratan fisik.
                     </p>
                 </div>
 
-                <div class="pt-6">
+                <div class="pt-4">
                     <button 
                         type="submit"
                         class="w-full bg-blue-900 text-white font-extrabold py-4 rounded-xl hover:bg-blue-800 transform hover:scale-[1.01] transition-all shadow-xl"

@@ -6,6 +6,40 @@
     <title>Profil Sekolah - SMAN 1 Rimba Melintang</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        /* Animasi Mengetik khusus untuk Judul Sejarah */
+        .typing-container {
+            display: inline-block;
+        }
+
+        .typing-text {
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 4px solid #eab308; /* Warna kuning kursor */
+            width: 0;
+            animation: 
+                typing 2.5s steps(15) forwards, 
+                blink 0.7s infinite;
+        }
+
+        /* Logic Animasi */
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            0%, 100% { border-color: transparent; }
+            50% { border-color: #eab308; }
+        }
+
+        /* Background Pattern */
+        .bg-pattern {
+            background-image: url('https://www.transparenttextures.com/patterns/pinstripe-dark.png');
+        }
+    </style>
 </head>
 <body class="bg-slate-50 font-sans text-gray-800">
 
@@ -36,7 +70,7 @@
     </nav>
 
     <div class="bg-blue-900 py-20 text-white text-center relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/pinstripe-dark.png')]"></div>
+        <div class="absolute inset-0 opacity-10 bg-pattern"></div>
         <div class="relative z-10 container mx-auto px-4">
             <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter">Profil Sekolah</h1>
             <div class="h-1.5 w-24 bg-yellow-500 mx-auto mt-6 rounded-full"></div>
@@ -48,7 +82,10 @@
         
         <div class="max-w-4xl mx-auto mb-24">
             <h2 class="text-3xl font-black text-blue-900 uppercase mb-8 flex items-center">
-                <span class="h-1 w-16 bg-yellow-500 mr-4 rounded-full"></span> Sejarah Singkat
+                <span class="h-1 w-16 bg-yellow-500 mr-4 rounded-full"></span> 
+                <span class="typing-container">
+                    <span class="typing-text text-blue-900">Sejarah Singkat SMAN 1 Rimba Melintang</span>
+                </span>
             </h2>
             <div class="bg-white p-10 rounded-[2rem] shadow-xl border-t-8 border-blue-900 text-gray-700 leading-relaxed text-lg italic">
                 <p>SMAN 1 Rimba Melintang didirikan dengan semangat untuk mencerdaskan generasi bangsa di wilayah Rokan Hilir, Riau. Melalui perjalanan panjang, kami terus bertransformasi menjadi institusi yang tidak hanya unggul dalam prestasi akademik, tetapi juga dalam pembentukan karakter siswa yang religius dan kompetitif.</p>
@@ -96,7 +133,7 @@
                 <div class="group bg-white p-8 rounded-3xl shadow-lg text-center border-b-4 border-transparent hover:border-yellow-500 hover:shadow-2xl transition-all duration-300">
                     <div class="text-5xl mb-6">🏫</div>
                     <h3 class="font-black text-xl mb-3 text-blue-900 uppercase">Ruang Kelas</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Dilengkapi dengan Smart TV dan AC untuk menunjang kenyamanan belajar siswa.</p>
+                    <p class="text-gray-500 text-sm leading-relaxed">Dilengkapi dengan fasilitas modern untuk menunjang kenyamanan belajar siswa.</p>
                 </div>
                 <div class="group bg-white p-8 rounded-3xl shadow-lg text-center border-b-4 border-transparent hover:border-yellow-500 hover:shadow-2xl transition-all duration-300">
                     <div class="text-5xl mb-6">🔬</div>
@@ -115,73 +152,42 @@
             <h2 class="text-3xl font-black text-blue-900 mb-10 uppercase">Struktur Organisasi</h2>
             <div class="bg-white p-6 rounded-[2rem] shadow-2xl border-4 border-dashed border-blue-50 group">
                 <img src="{{ asset('images/struktur.png') }}" alt="Struktur Organisasi" class="mx-auto rounded-2xl group-hover:opacity-90 transition cursor-zoom-in">
-                <p class="mt-6 text-gray-400 text-xs font-medium uppercase tracking-widest italic">Klik gambar untuk memperbesar struktur</p>
+                <p class="mt-6 text-gray-400 text-xs font-medium uppercase tracking-widest italic">Gambar Struktur Organisasi SMAN 1 Rimba Melintang</p>
             </div>
         </div>
     </div>
 
     <footer class="bg-[#0a0f1d] text-white pt-20 pb-10 mt-20">
         <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 text-sm">
-            
             <div class="space-y-6">
-                <h3 class="text-2xl font-bold italic tracking-tight text-white uppercase border-b-2 border-yellow-500 inline-block">SMAN 1 Rimba melintang</h3>
-                <p class="text-gray-400 leading-relaxed text-xs">
-                    Pencetak generasi cerdas dan berkarakter di Rokan Hilir. Kami berkomitmen memberikan kualitas pendidikan terbaik bagi putra-putri daerah.
-                </p>
-                <div class="flex space-x-3 opacity-80">
-                    <span class="bg-blue-900 p-2 rounded-lg cursor-pointer hover:bg-yellow-500 transition">🌐</span>
-                    <span class="bg-blue-900 p-2 rounded-lg cursor-pointer hover:bg-yellow-500 transition">📸</span>
-                    <span class="bg-blue-900 p-2 rounded-lg cursor-pointer hover:bg-yellow-500 transition">▶️</span>
-                </div>
+                <h3 class="text-2xl font-bold italic tracking-tight text-white uppercase border-b-2 border-yellow-500 inline-block">SMAN 1 Rimel</h3>
+                <p class="text-gray-400 leading-relaxed text-xs">Pencetak generasi cerdas dan berkarakter di Rokan Hilir.</p>
             </div>
 
             <div>
-                <h3 class="text-lg font-bold mb-6 uppercase text-yellow-500 tracking-wider">Kontak Sekolah</h3>
-                <ul class="space-y-4 text-gray-400 text-xs">
-                    <li class="flex items-start gap-3">
-                        <span class="text-blue-400">📍</span>
-                        <span>Jl. Pendidikan, Rimba Melintang, Rokan Hilir, Riau 28953</span>
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <span class="text-blue-400">📞</span>
-                        <span>0811-6040-771</span>
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <span class="text-blue-400">📧</span>
-                        <span>info@sman1rimel.sch.id</span>
-                    </li>
+                <h3 class="text-lg font-bold mb-6 uppercase text-yellow-500 tracking-wider">Kontak</h3>
+                <ul class="space-y-4 text-gray-400 text-xs font-medium">
+                    <li>📍 Rokan Hilir, Riau</li>
+                    <li>📞 0811-6040-771</li>
                 </ul>
             </div>
 
             <div>
-                <h3 class="text-lg font-bold mb-6 uppercase text-yellow-500 tracking-wider">Tautan Cepat</h3>
-                <ul class="space-y-3 text-gray-400 text-xs">
-                    <li><a href="/profil" class="hover:text-yellow-400 transition">Profil Sekolah</a></li>
-                    <li><a href="/guru" class="hover:text-yellow-400 transition">Data Guru</a></li>
-                    <li><a href="/galeri" class="hover:text-yellow-400 transition">Galeri Foto</a></li>
-                    <li><a href="/berita" class="hover:text-yellow-400 transition">Berita Terbaru</a></li>
-                    <li><a href="/ppdb" class="hover:text-yellow-400 transition font-bold text-white uppercase tracking-tighter">PPDB Online</a></li>
+                <h3 class="text-lg font-bold mb-6 uppercase text-yellow-500 tracking-wider">Tautan</h3>
+                <ul class="space-y-3 text-gray-400 text-xs font-bold uppercase">
+                    <li><a href="/profil" class="hover:text-yellow-400">Profil</a></li>
+                    <li><a href="/berita" class="hover:text-yellow-400">Berita</a></li>
                 </ul>
             </div>
 
             <div>
-                <h3 class="text-lg font-bold mb-6 uppercase text-yellow-500 tracking-wider">Info Tambahan</h3>
-                <ul class="space-y-3 text-gray-400 text-xs">
-                    <li><p>Akreditasi: <span class="text-white font-bold uppercase">Unggul (A)</span></p></li>
-                    <li><p>NPSN: 10405368</p></li>
-                    <li class="pt-4">
-                        <a href="/login" class="bg-white/5 border border-white/10 px-4 py-2 rounded text-[10px] hover:bg-yellow-500 hover:text-blue-900 transition font-bold tracking-widest uppercase">
-                            Admin Login
-                        </a>
-                    </li>
-                </ul>
+                <h3 class="text-lg font-bold mb-6 uppercase text-yellow-500 tracking-wider">Admin</h3>
+                <a href="/login" class="bg-white/5 border border-white/10 px-4 py-2 rounded text-[10px] hover:bg-yellow-500 hover:text-blue-900 transition font-bold uppercase">Login</a>
             </div>
         </div>
 
-        <div class="container mx-auto px-6 mt-16 pt-8 border-t border-gray-800 text-center">
-            <p class="text-gray-500 text-[10px] uppercase tracking-[0.2em]">
-                &copy; 2026 SMAN 1 Rimba Melintang. All rights reserved.
-            </p>
+        <div class="container mx-auto px-6 mt-16 pt-8 border-t border-gray-800 text-center text-gray-500 text-[10px] uppercase tracking-widest">
+            &copy; 2026 SMAN 1 Rimba Melintang.
         </div>
     </footer>
 

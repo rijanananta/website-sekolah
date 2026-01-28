@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\ProfilsklhController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PpdbController;
+
 // Tambahkan ini untuk menangani data form
 
 // --- HALAMAN PUBLIK (Bisa diakses siapa saja) ---
@@ -20,6 +23,7 @@ Route::get('/guru', [GuruController::class, 'index']);
 Route::get('/profil', function () { return view('profil'); });
 Route::get('/galeri', [GaleriController::class, 'indexPublik']);
 Route::get('/berita', [BeritaController::class, 'indexPublik']);
+Route::get('/berita/{id}', [BeritaController::class, 'show'])->name('berita.show');
 // Ganti Route profil yang lama dengan ini
 Route::get('/profil', [ProfilsklhController::class, 'index']);
 // --- PPDB (Pendaftaran Peserta Didik Baru) ---
@@ -29,7 +33,9 @@ Route::get('/ppdb', function () {
 
 Route::get('/ppdb/daftar', function () { 
     return view('daftar_online'); 
+    Route::post('/ppdb/simpan', [PpdbController::class, 'store'])->name('ppdb.simpan');
 });
+
 
 // Route untuk memproses pendaftaran dan mengarahkan ke halaman sukses
 Route::post('/ppdb/simpan', function (Request $request) {
@@ -37,7 +43,7 @@ Route::post('/ppdb/simpan', function (Request $request) {
     // Untuk sementara, kita langsung arahkan ke halaman sukses
     return redirect('/ppdb/sukses');
 });
-
+Route::post('/ppdb/simpan', [PpdbController::class, 'store'])->name('ppdb.simpan');
 // Halaman Sukses
 Route::get('/ppdb/sukses', function () {
     return view('ppdb_sukses');
@@ -86,6 +92,16 @@ Route::middleware('auth')->group(function () {
     // Jalur untuk edit visi misi
     Route::get('/admin/profilsklh/edit', [ProfilsklhController::class, 'edit']);
     Route::post('/admin/profilsklh/update', [ProfilsklhController::class, 'update']);
+
+// Tambahkan baris ini
+    
+    // Pastikan ada name('users.index') dan name('users.destroy')
+    Route::get('/admin/users', [UserController::class, 'index'])->name('users.index');
+    Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
+    Route::get('/admin/ppdb/list', [PpdbController::class, 'index'])->name('ppdb.index');
+    Route::delete('/admin/ppdb/{id}', [PpdbController::class, 'destroy'])->name('ppdb.destroy');
+    
 });
 
 require __DIR__.'/auth.php';

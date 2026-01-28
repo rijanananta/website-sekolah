@@ -8,19 +8,27 @@
                     @csrf
                     <div class="mb-6">
                         <label class="block font-bold mb-2">Visi Sekolah</label>
-                        {{-- Ganti $profilsklh menjadi $profil agar sinkron dengan Controller --}}
-                        <textarea name="visi" class="w-full border-gray-300 rounded-xl" rows="3">{{ $profil->visi ?? '' }}</textarea>
+                        {{-- Sinkron dengan Controller --}}
+                        <textarea name="visi" class="w-full border-gray-300 rounded-xl focus:border-yellow-500 focus:ring-yellow-500" rows="3">{{ $profil->visi ?? '' }}</textarea>
                     </div>
 
                     <div class="mb-6">
                         <label class="block font-bold mb-2">Misi Sekolah</label>
-                        {{-- Ganti $profilsklh menjadi $profil agar sinkron dengan Controller --}}
-                        <textarea name="misi" class="w-full border-gray-300 rounded-xl" rows="6">{{ $profil->misi ?? '' }}</textarea>
+                        {{-- Sinkron dengan Controller --}}
+                        <textarea name="misi" class="w-full border-gray-300 rounded-xl focus:border-yellow-500 focus:ring-yellow-500" rows="6">{{ $profil->misi ?? '' }}</textarea>
                     </div>
 
-                    <button type="submit" class="bg-yellow-500 text-blue-900 px-8 py-3 rounded-xl font-bold hover:bg-yellow-400">
-                        Simpan Perubahan
-                    </button>
+                    <div class="flex items-center gap-4">
+                        {{-- Tombol Simpan --}}
+                        <button type="submit" class="bg-yellow-500 text-blue-900 px-8 py-3 rounded-xl font-bold hover:bg-yellow-400 shadow-sm transition">
+                            Simpan 
+                        </button>
+
+                        {{-- Tombol Batal --}}
+                        <a href="/dashboard" class="bg-gray-100 text-gray-700 px-8 py-3 rounded-xl font-bold hover:bg-gray-200 transition text-center">
+                            Batal
+                        </a>
+                    </div>
                 </form>
             </div>
         </div>
